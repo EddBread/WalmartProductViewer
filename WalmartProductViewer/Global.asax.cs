@@ -12,6 +12,7 @@ namespace WalmartProductViewer
     {
         protected void Application_Start()
         {
+            // GlobalFilters.Filters.Add(new HandleErrorAttribute());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

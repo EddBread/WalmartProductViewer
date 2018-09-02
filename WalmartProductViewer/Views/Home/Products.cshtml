@@ -1,29 +1,21 @@
-﻿@model IEnumerable<WalmartProductViewer.Models.Category>
-
+﻿@model IEnumerable<WalmartProductViewer.Models.Product>
 
 <div class="container">
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
 </div>
 
-
 @if (Model != null && Model.Count() > 0)
 {
-    foreach (var department in Model)
+    foreach (var product in Model)
     {
-        <div class="container" id="myDIV">
-            <div class="row">
-                <h2>@Html.ActionLink(@department.Name, "Products", "Home", new { id = department.ID }, null)</h2>
+        <div class="container">
+            <div class="row" id="myDIV">
+                @Html.ActionLink(product.Name, "ProductDetail", "Home", product, null)
+                <img src=@product.ThumbnailImage />
             </div>
-
-
-            @foreach (var category in department.Children)
-            {
-                <div class="row" id="myDIV"><h8>@Html.ActionLink(@category.Name, "Products", "Home", new { id = category.ID }, null)</h8></div>
-            }
         </div>
     }
 }
-
 @section scripts {
     <script>
         $(document).ready(function () {

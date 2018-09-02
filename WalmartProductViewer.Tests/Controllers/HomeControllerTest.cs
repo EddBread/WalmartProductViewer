@@ -1,54 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WalmartProductViewer;
-using WalmartProductViewer.Controllers;
 
-namespace WalmartProductViewer.Tests.Controllers
+namespace WalmartProductViewer.Controllers.Tests
 {
-    [TestClass]
+    [TestClass()]
     public class HomeControllerTest
     {
-        [TestMethod]
-        public void Index()
+        [TestMethod()]
+        public void IndexIsNotNull()
         {
-            // Arrange
             HomeController controller = new HomeController();
+            ViewResult result = controller.Index().Result as ViewResult;
+            Assert.IsNotNull(result);           
+        }
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+        [TestMethod()]
+        public void IndexModelTypeIsList()
+        {
+            HomeController controller = new HomeController();
+            ViewResult result = controller.Index().Result as ViewResult;
+            Type modelType = result.Model.GetType();
+            Type listCategory = new List<Models.Category>().GetType();
+            Assert.AreEqual(modelType, listCategory);
+        }
 
-            // Assert
+
+        [TestMethod()]
+        public void ProductsIsNotNull()
+        {
+            HomeController controller = new HomeController();
+            ViewResult result = controller.Products("Test").Result as ViewResult;
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
-        public void About()
+        [TestMethod()]
+        public void ProductsModelIsList()
         {
-            // Arrange
             HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.About() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            ViewResult result = controller.Products("1334134").Result as ViewResult;
+            Type modelType = result.Model.GetType();
+            Type listProduct = new List<Models.Product>().GetType();
+            Assert.AreEqual(modelType, listProduct);
         }
 
-        [TestMethod]
-        public void Contact()
+
+
+
+        [TestMethod()]
+        public void ProductDetailIsNotNull()
         {
-            // Arrange
             HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.Contact() as ViewResult;
-
-            // Assert
+            ViewResult result = controller.ProductDetail(new Models.Product()) as ViewResult;
             Assert.IsNotNull(result);
         }
     }
 }
+
