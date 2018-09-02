@@ -11,4 +11,4 @@ Have a while loop that continually makes GET requests on the next page and add i
 that would render the data structure into seperate pages.
 
 ### Any improvements you would make to your application?
-I would test it more and improve the error handling, improve aesthetics, add more logger classes to help with debugging. 
+I would test it more and improve the error handling, improve aesthetics, add more comments, add more logger classes to help with debugging. 
